@@ -1,0 +1,70 @@
+<!-- <!DOCTYPE html> -->
+<html>
+<head>
+  <title>Intranet</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="icon" type="image/png" href="img3.png">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Pacifico:400italic,600italic,700italic,400,600,700">
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand logo" href="/">Intranet</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
+        <!-- <ul class="nav navbar-nav">
+        <li><a href="/insta_users">Contas Instagram</a></li>
+        <li><a href="/insta_users">Contas Instagram</a></li>
+
+
+      </ul> -->
+      <% if current_user %>
+        <ul class="nav navbar-nav navbar-right">
+          <!-- <li><a href="/insta_users"><span class="glyphicon glyphicon-user"></span> Texto 1</a></li>
+          <li><a href="/insta_runs"><span class="glyphicon glyphicon-fire"></span> Texto 2</a></li> -->
+          <li class="active"><%= link_to 'Logout', destroy_user_session_path,:method => :delete%></li>
+        </ul>
+      <%else%>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+        <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+      <%end%>
+    </ul>
+  </div><!--/.nav-collapse -->
+</div>
+</nav>
+<!-- <nav class="navbar navbar-default navbar-fixed-top">
+<div class="container-fluid">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+
+
+</div>
+
+</div><!-- /.navbar-collapse -->
+</div><!-- /.container-fluid -->
+
+<div class="container"><br><br><br>
+  <%= yield %><!--/row-->
+</div> <!-- /container -->
+</body>
+</html>
