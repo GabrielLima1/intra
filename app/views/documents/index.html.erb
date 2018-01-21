@@ -1,0 +1,17 @@
+<%- model_class = Document -%>
+<h1 class="text-white">Documentos - <%= link_to 'Enviar Documento',
+            new_document_path,
+            :class => 'btn btn-primary' %></h1>
+<%if @documents.length==0%>
+  <h1>Sem Documentos!</h1>
+  <%else%>
+  <% @documents.each do |document| %>
+    <div class="col-lg-4 box text-black" align="center">
+      <img class="rounded-circle" src="icon-documents0.png" alt="Icone Documento" width="180" height="100">
+      <h2><%= document.title %></h2>
+      <p><%= document.description %></p>
+      <p><a class="btn btn-secondary" href="<%= document.file %>" role="button" download>Download</a></p>
+    </div>
+  <% end %>
+<% end %>
+<br><br>

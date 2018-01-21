@@ -1,0 +1,11 @@
+# config/cloudinary.yml
+#ENV["CLOUD_NAME"]
+development:
+  cloud_name: "dxdjmji0n"
+  api_key: "553374334322797"
+  api_secret: "zH0N2eGnqwIW1yiy5A9Ek_IHSCU"
+
+production:
+  cloud_name: "###########"
+  api_key: "###########"
+  api_secret: "###########"

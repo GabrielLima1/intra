@@ -22,7 +22,9 @@ gem 'simple_form'
 gem 'cloudinary'
 gem 'default_value_for'
 gem 'therubyracer'
-gem 'twitter-bootstrap-rails'
+gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'master'
+gem 'will_paginate', '~> 3.1.0'
+gem 'carrierwave'
 
 
 group :development, :test do

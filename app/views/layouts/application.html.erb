@@ -7,6 +7,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   <link rel="icon" type="image/png" href="img3.png">
+  <script src="https://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Pacifico:400italic,600italic,700italic,400,600,700">
 </head>
@@ -30,10 +31,15 @@
 
 
       </ul> -->
-      <% if current_user %>
+      <% if current_user && current_user.kind == "manager" %>
         <ul class="nav navbar-nav navbar-right">
           <!-- <li><a href="/insta_users"><span class="glyphicon glyphicon-user"></span> Texto 1</a></li>
           <li><a href="/insta_runs"><span class="glyphicon glyphicon-fire"></span> Texto 2</a></li> -->
+          <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Cadastrar usuário</a></li>
+          <li class="active"><%= link_to 'Logout', destroy_user_session_path,:method => :delete%></li>
+        </ul>
+      <% elsif current_user %>
+        <ul class="nav navbar-nav navbar-right">
           <li class="active"><%= link_to 'Logout', destroy_user_session_path,:method => :delete%></li>
         </ul>
       <%else%>

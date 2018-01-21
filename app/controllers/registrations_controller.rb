@@ -1,20 +1,15 @@
 class RegistrationsController < Devise::RegistrationsController
 
-  skip_before_filter :require_no_authentication, only: [:new]
+  skip_before_filter :require_no_authentication, only: [:new, :create, :index]
 
   def new
-    @user = User.new
+    super
   end
-  def add_user
-    @user = User.new(user_params)
-     if @user.save!
-       redirect_to root_path
-     end
+  
+  def create_user
+    @user = User.new(:email => params[:email], :password => params[:password], :kind => params[:kind], :name => params[:name] )
+    @user.save
+    redirect_to documents_path, alert: "Documento deletado com Sucesso"
   end
 
-  private
-
-  def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
-  end
 end
