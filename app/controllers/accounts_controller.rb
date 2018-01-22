@@ -12,7 +12,7 @@ class AccountsController < ApplicationController
     #user = User.new(name: nome, email: email, password: password)
     #user.save
     User.create(name: nome, email: email, password: password)
-    binding.pry
+    #binding.pry
     @account = Account.create(account_params)
     respond_with @account
   end
@@ -35,7 +35,7 @@ class AccountsController < ApplicationController
 
   def index
     if current_user.kind == "manager"
-      @accounts = Account.paginate(:page => params[:page], :per_page => 10)
+      @accounts = User.paginate(:page => params[:page], :per_page => 10)
                           .order(created_at: :asc)
     end
   end
@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = Account.find(params[:id])
+    @account = User.find(params[:id])
   end
 
   def account_params

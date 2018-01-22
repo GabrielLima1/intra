@@ -3,25 +3,3 @@
   <h1><%=t '.title', :default => [:'helpers.titles.new', 'New %{model}'], :model => model_class.model_name.human.titleize %></h1>
 </div>
 <%= render :partial => 'form' %>
-<script>
-$( document ).ready(function() {
-
-  // hide spinner
-  $(".spinner").hide();
-
-
-  // show spinner on AJAX start
-  $(document).ajaxStart(function(){
-    $(".spinner").show();
-  });
-
-  // hide spinner on AJAX stop
-  $(document).ajaxStop(function(){
-    $(".spinner").hide();
-  });
-
-});
-</script>
-<div class="spinner">
-<img src="ajax-loader.gif" alt="Gif">
-</div>

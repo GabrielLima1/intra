@@ -2,13 +2,14 @@
   <div class=" text-center">
     <div class="mz_row">
       <%if current_user && current_user.kind == "manager" %>
+
       <h1>Olá <%= current_user.name%></h1>
       <br><br><br>
       <div class="col-lg-5 box-home text-black" align="center">
         <img class="rounded-circle" src="icon-users0.png" alt="Icone Clientes" width="100" height="100">
         <h2>Clientes</h2>
         <p>Lista dos clientes cadastrados na plataforma</p><br>
-        <a href="users"> <button type="button" name="button" class="btn btn-primary">Ver Clientes</button></a>
+        <a href="accounts"> <button type="button" name="button" class="btn btn-primary">Ver Clientes</button></a>
         <br><br><br>
       </div>
 
@@ -20,7 +21,15 @@
         <br><br><br>
       </div>
       <% elsif current_user%>
-      <h1>Olá <%= current_user.name%></h1>
+
+      <h1>Olá <%= current_user.name%></h1><br>
+      <div class="col-lg-11 box-home text-black" align="center">
+        <img class="rounded-circle" src="icon-documents0.png" alt="Icone Documento" width="180" height="100">
+        <h2>Documentos</h2>
+        <p>Lista dos documentos cadastrados na plataforma</p><br>
+        <a href="/documents"> <button type="button" name="button" class="btn btn-primary">Ver Documentos</button></a>
+        <br><br><br>
+      </div>
       <%else%>
       <div class="jumbotron">
         <h1 class="jumbotron text-black">Faça Login para usar o Sistema!</h1>
