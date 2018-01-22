@@ -25,7 +25,7 @@ gem 'therubyracer'
 gem 'twitter-bootstrap-rails', :git => 'https://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'master'
 gem 'will_paginate', '~> 3.1.0'
 gem 'carrierwave'
-
+gem 'pry'
 
 group :development, :test do
   gem 'byebug', platform: :mri
