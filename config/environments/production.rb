@@ -1,22 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.perform_caching = false
-  config.action_mailer.perform_deliveries = true
-  config.mailer_sender = 'PostCom <nao-responda@postcom.com.br>'
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: ENV["EMAIL_USER_NAME"]}
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: "br214.hostgator.com.br",
-    port: 587,
-    domain: "postcom.com.br",
-    authentication: "plain",
-    enable_starttls_auto: true,
-    user_name: ENV["EMAIL_USER_NAME"],
-    password: ENV["EMAIL_PASSWORD"]
-  }
-  
   # Code is not reloaded between requests.
   config.cache_classes = true
 
