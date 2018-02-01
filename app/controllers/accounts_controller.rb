@@ -31,6 +31,7 @@ class AccountsController < ApplicationController
     id = @account.id
     if id == current_user.id
       flash[:notice] = 'Ops!'
+      redirect_to accounts_path
     else
       @account.deleted = true
       @account.save
