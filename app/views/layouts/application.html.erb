@@ -35,17 +35,18 @@
         <ul class="nav navbar-nav navbar-right">
           <!-- <li><a href="/insta_users"><span class="glyphicon glyphicon-user"></span> Texto 1</a></li>
           <li><a href="/insta_runs"><span class="glyphicon glyphicon-fire"></span> Texto 2</a></li> -->
-          <li><a href="/accounts/new"><span class="glyphicon glyphicon-user"></span> Cadastrar usuário</a></li>
+          <li><a href="/accounts"><span class="glyphicon glyphicon-user"></span> Usuários</a></li>
+          <li><a href="/documents"><span class="glyphicon glyphicon-file"></span> Documentos</a></li>
           <li class="active"><%= link_to 'Logout', destroy_user_session_path,:method => :delete%></li>
         </ul>
       <% elsif current_user %>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/accounts/edit"><span class="glyphicon glyphicon-user"></span> Editar Perfil</a></li>
+          <li><a href="/accounts/<%= current_user.id %>/edit"><span class="glyphicon glyphicon-user"></span> Editar Perfil</a></li>
           <li class="active"><%= link_to 'Logout', destroy_user_session_path,:method => :delete%></li>
         </ul>
       <%else%>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li>
+        <!-- <li><a href="/users/sign_up"><span class="glyphicon glyphicon-user"></span> Cadastre-se</a></li> -->
         <li><a href="/users/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
       <%end%>

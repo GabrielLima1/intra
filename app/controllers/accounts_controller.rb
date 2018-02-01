@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_account, only: [:edit, :update, :show, :destroy]
 
   def new
@@ -27,16 +28,30 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account.destroy
-    redirect_to accounts_path, alert: "Documento deletado com Sucesso"
+    id = @account.id
+    if id == current_user.id
+      flash[:notice] = 'Ops!'
+    else
+      @account.deleted = true
+      @account.save
+      a = User.find(id)
+      a.deleted = true
+      a.save
+      flash[:notice] = 'Deletado com sucesso!'
+      redirect_to accounts_path
+    end
   rescue
-    redirect_to accounts_path, alert: "Não foi possivel deletar o Documento!"
+    flash[:notice] = 'Ops!'
+    redirect_to accounts_path
   end
 
   def index
-    if current_user.kind == "manager"
+    if current_user && current_user.kind == "manager"
       @accounts = User.paginate(:page => params[:page], :per_page => 10)
-                          .order(created_at: :asc)
+                          .order(created_at: :asc).where(deleted: false)
+    else
+
+      @accounts = nil
     end
   end
 
@@ -44,10 +59,16 @@ class AccountsController < ApplicationController
   private
 
   def set_account
-    @account = User.find(params[:id])
+    if current_user.kind == "manager"
+      @account = Account.find(params[:id])
+    elsif current_user
+      @account = Account.find(current_user.id)
+    else
+      @account = nil
+    end
   end
 
   def account_params
-    params.require(:account).permit(:name, :email, :password)
+    params.require(:account).permit( :name, :email, :password)
   end
 end

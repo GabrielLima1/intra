@@ -3,7 +3,7 @@
   <%= f.input :title %>
   <%= f.input :file %>
   <%= f.input :description %>
-  <%= f.association :user, prompt: "Selecione o Cliente", collection: User.all%>
+  <%= f.association :user, prompt: "Selecione o Cliente", collection: User.where(deleted: false).where.not(id: current_user.id)%>
 
 
   <%= f.button :submit, :class => 'btn-primary' %>

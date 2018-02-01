@@ -1,37 +1,41 @@
+<% if @accounts.nil? %>
+<h1>NADA AQUI!!!!</h1>
+<% else %>
 <%- model_class = Account -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %> - <%= link_to t('.new', :default => t("helpers.links.new")),
+  <h1>Usuários - <%= link_to 'Cadastrar usuário',
               new_account_path,
               :class => 'btn btn-primary' %>
             </h1>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:name) %></th>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @accounts.each do |account| %>
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= link_to account.id, account_path(account) %></td>
-        <td><%= account.name %></td>
-        <td><%= account.email %></td>
-        <td>
-          <%= link_to t('.show', :default => t("helpers.links.show")),
-                      account_path(account), :class => 'btn btn-default' %>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_account_path(account), :class => 'btn btn-default' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      account_path(account),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-danger' %>
-        </td>
+        <th>Código</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Ações</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+      <tbody>
+        <% @accounts.each do |account| %>
+          <tr>
+            <td><%= link_to account.id, account_path(account) %></td>
+            <td><%= account.name %></td>
+            <td><%= account.email %></td>
+            <td>
+              <%= link_to t('.show', :default => t("helpers.links.show")),
+                          account_path(account), :class => 'btn btn-default' %>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                          edit_account_path(account), :class => 'btn btn-default' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                          account_path(account),
+                          :method => :delete,
+                          :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                          :class => 'btn btn-danger' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+<% end %>
